@@ -55,7 +55,6 @@ async function DashboardContent() {
       status: 'approved' as const,
       notes: null,
       createdAt: rental.createdAt,
-      updatedAt: rental.updatedAt,
     },
   }));
 

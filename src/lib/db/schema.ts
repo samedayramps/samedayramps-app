@@ -18,7 +18,6 @@ export const inquiries = pgTable('inquiries', {
   status: inquiryStatusEnum('status').default('new'),
   notes: text('notes'),
   createdAt: timestamp('created_at').defaultNow(),
-  updatedAt: timestamp('updated_at').defaultNow(),
 });
 
 export const quotes = pgTable('quotes', {
