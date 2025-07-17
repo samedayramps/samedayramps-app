@@ -67,7 +67,6 @@ export async function updateInquiryAction(
       .update(inquiries)
       .set({
         ...validatedData,
-        updatedAt: new Date(),
       })
       .where(eq(inquiries.id, inquiryId))
       .returning();
@@ -105,7 +104,6 @@ export async function updateInquiryStatusAction(
       .update(inquiries)
       .set({
         status,
-        updatedAt: new Date(),
       })
       .where(eq(inquiries.id, inquiryId))
       .returning();
