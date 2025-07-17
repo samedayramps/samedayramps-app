@@ -32,7 +32,7 @@ export default function SignIn() {
           router.push('/');
         }
       }
-    } catch (error) {
+    } catch (_error) {
       setError('An error occurred');
     } finally {
       setIsLoading(false);

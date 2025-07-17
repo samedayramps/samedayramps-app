@@ -16,7 +16,7 @@ const handler = NextAuth({
         ) {
           return {
             id: '1',
-            email: credentials.email,
+            email: credentials?.email || '',
             name: 'Admin',
           };
         }
@@ -38,8 +38,8 @@ const handler = NextAuth({
       return token;
     },
     async session({ session, token }) {
-      if (token) {
-        session.user.id = token.id as string;
+      if (token && session.user) {
+        (session.user as any).id = token.id as string;
       }
       return session;
     },

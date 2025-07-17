@@ -97,8 +97,8 @@ export function RentalTable({ rentals }: RentalTableProps) {
                       <div className="text-sm">
                         {typeof rental.rampConfig === 'object' && rental.rampConfig && (
                           <>
-                            {(rental.rampConfig as any).platforms?.length || 0} platforms,{' '}
-                            {(rental.rampConfig as any).ramps?.length || 0} ramps
+                            {(rental.rampConfig as { platforms?: unknown[]; ramps?: unknown[] }).platforms?.length || 0} platforms,{' '}
+                            {(rental.rampConfig as { platforms?: unknown[]; ramps?: unknown[] }).ramps?.length || 0} ramps
                           </>
                         )}
                       </div>

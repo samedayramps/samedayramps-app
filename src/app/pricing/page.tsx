@@ -10,21 +10,22 @@ import { requireAuth } from '@/lib/auth';
 import { ArrowLeft } from 'lucide-react';
 
 interface PricingPageProps {
-  searchParams: {
+  searchParams: Promise<{
     inquiry?: string;
-  };
+  }>;
 }
 
 async function PricingContent({ searchParams }: PricingPageProps) {
   let inquiry = null;
   
-  if (searchParams.inquiry) {
-    const inquiryId = parseInt(searchParams.inquiry);
-    if (!isNaN(inquiryId)) {
+  const { inquiry: inquiryId } = await searchParams;
+
+  if (inquiryId) {
+    if (!isNaN(parseInt(inquiryId))) {
       [inquiry] = await db
         .select()
         .from(inquiries)
-        .where(eq(inquiries.id, inquiryId));
+        .where(eq(inquiries.id, parseInt(inquiryId)));
     }
   }
 
