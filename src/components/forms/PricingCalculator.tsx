@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -13,7 +14,6 @@ import { Plus, Minus, Calculator, Save } from 'lucide-react';
 interface PricingCalculatorProps {
   inquiryId?: number;
   defaultAddress?: string;
-  onQuoteSaved?: () => void;
 }
 
 interface PricingResult {
@@ -25,7 +25,8 @@ interface PricingResult {
   distance?: number;
 }
 
-export function PricingCalculator({ inquiryId, defaultAddress: _defaultAddress, onQuoteSaved }: PricingCalculatorProps) {
+export function PricingCalculator({ inquiryId, defaultAddress: _defaultAddress }: PricingCalculatorProps) {
+  const router = useRouter();
   const [rampConfig, setRampConfig] = useState<RampConfiguration>({
     platforms: [{ size: '5x5', quantity: 1 }],
     ramps: [{ length: 6, quantity: 1 }],
@@ -123,7 +124,11 @@ export function PricingCalculator({ inquiryId, defaultAddress: _defaultAddress, 
       });
 
       if (result.success) {
-        onQuoteSaved?.();
+        if (inquiryId) {
+          router.push(`/inquiries/${inquiryId}`);
+        } else {
+          router.push('/inquiries');
+        }
       } else {
         setError(result.error || 'Failed to save quote');
       }

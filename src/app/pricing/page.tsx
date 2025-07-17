@@ -73,12 +73,6 @@ async function PricingContent({ searchParams }: PricingPageProps) {
           <PricingCalculator 
             inquiryId={inquiry?.id}
             defaultAddress={inquiry?.address}
-            onQuoteSaved={() => {
-              // Redirect to inquiry detail page after saving quote
-              if (inquiry) {
-                window.location.href = `/inquiries/${inquiry.id}`;
-              }
-            }}
           />
         </div>
       </div>
