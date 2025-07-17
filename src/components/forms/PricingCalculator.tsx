@@ -25,7 +25,7 @@ interface PricingResult {
   distance?: number;
 }
 
-export function PricingCalculator({ inquiryId, defaultAddress, onQuoteSaved }: PricingCalculatorProps) {
+export function PricingCalculator({ inquiryId, defaultAddress: _defaultAddress, onQuoteSaved }: PricingCalculatorProps) {
   const [rampConfig, setRampConfig] = useState<RampConfiguration>({
     platforms: [{ size: '5x5', quantity: 1 }],
     ramps: [{ length: 6, quantity: 1 }],
@@ -100,7 +100,7 @@ export function PricingCalculator({ inquiryId, defaultAddress, onQuoteSaved }: P
       } else {
         setError(result.error || 'Failed to calculate pricing');
       }
-    } catch (err) {
+    } catch (_err) {
       setError('An error occurred while calculating pricing');
     } finally {
       setIsCalculating(false);
@@ -127,7 +127,7 @@ export function PricingCalculator({ inquiryId, defaultAddress, onQuoteSaved }: P
       } else {
         setError(result.error || 'Failed to save quote');
       }
-    } catch (err) {
+    } catch (_err) {
       setError('An error occurred while saving quote');
     } finally {
       setIsSaving(false);

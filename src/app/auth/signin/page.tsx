@@ -24,7 +24,8 @@ export default function SignIn() {
       });
 
       if (result?.error) {
-        setError('Invalid credentials');
+        console.error('Sign in error:', result.error);
+        // Handle error appropriately
       } else {
         const session = await getSession();
         if (session) {

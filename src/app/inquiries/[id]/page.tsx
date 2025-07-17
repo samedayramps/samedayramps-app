@@ -9,15 +9,16 @@ import { requireAuth } from '@/lib/auth';
 import { ArrowLeft, Calculator } from 'lucide-react';
 
 interface InquiryDetailPageProps {
-  params: {
+  params: Promise<{
     id: string;
-  };
+  }>;
 }
 
 export default async function InquiryDetailPage({ params }: InquiryDetailPageProps) {
   await requireAuth();
 
-  const inquiryId = parseInt(params.id);
+  const { id } = await params;
+  const inquiryId = parseInt(id);
   if (isNaN(inquiryId)) {
     notFound();
   }

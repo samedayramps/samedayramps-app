@@ -32,7 +32,7 @@ export function InquiryForm({ inquiry, onSuccess }: InquiryFormProps) {
       } else {
         setError(result.error || 'An error occurred');
       }
-    } catch (err) {
+    } catch (_err) {
       setError('An unexpected error occurred');
     } finally {
       setIsSubmitting(false);

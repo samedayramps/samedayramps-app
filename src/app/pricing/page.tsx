@@ -1,5 +1,5 @@
 import { Suspense } from 'react';
-import { notFound } from 'next/navigation';
+// import { notFound } from 'next/navigation';
 import Link from 'next/link';
 import { db } from '@/lib/db/client';
 import { inquiries } from '@/lib/db/schema';
